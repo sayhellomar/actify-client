@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+@theme {
+	--font-bebas-neue: "Bebas Neue", sans-serif;
+	--font-poppins: "Poppins", sans-serif;
+	--color-actify-red: #FF8F8F;
+	--color-actify-yellow: #FFF1CB;
+	--color-actify-blue: #C2E2FA;
+	--color-actify-violet: #B7A3E3;
+}
+
+.actify-btn-pill {
+	@apply text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-7 py-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none cursor-pointer;
+}
+
+body {
+	font-family: var(--font-poppins);
+}
