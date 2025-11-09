@@ -20,3 +20,23 @@
 body {
 	font-family: var(--font-poppins);
 }
+
+/* .register-area {
+	position: relative;
+	background-image: url('../src/assets/register-bg.jpg');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.register-area:before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(244, 242, 235, .9);
+} */

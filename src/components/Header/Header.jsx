@@ -10,8 +10,8 @@ const Header = () => {
                 <div className="header">
                     <nav className="bg-white border-gray-200 dark:bg-gray-900">
                         <div className="flex flex-wrap items-center justify-between mx-auto py-6">
-                            <a
-                                href="/"
+                            <Link
+                                to="/"
                                 className="flex items-center space-x-3 rtl:space-x-reverse"
                             >
                                 <img
@@ -19,7 +19,7 @@ const Header = () => {
                                     className="h-8"
                                     alt="Actify Logo"
                                 />
-                            </a>
+                            </Link>
                             <button
                                 data-collapse-toggle="navbar-default"
                                 type="button"
