@@ -1,13 +1,49 @@
 import Container from "../components/Container/Container";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
+import useAuth from "../hooks/useAuth";
+import { useState } from "react";
 
 const Register = () => {
+    const {createUser, udpateUserProfile} = useAuth();
+    const [passError, setPassError] = useState(null);
+    const navigate = useNavigate();
+
+    // console.log(user);
+    const handleRegister = e => {
+        setPassError(null);
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const photo = form.photo.value;
+        const password = form.password.value;
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+
+        if(!passwordRegex.test(password)) {
+            setPassError('Password must have an uppercase letter, a lowercase letter, and be at least 6 characters long.');
+            return;
+        }
+        createUser(email, password)
+        .then(userCredential => {
+            const user = userCredential.user;
+            udpateUserProfile({displayName: name, photoURL: photo})
+            .then(() => {
+                navigate('/');
+            })
+            form.reset();
+            console.log(user);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+    }
     return (
         <section className="register-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
             <Container>
                 <div className="register-inner grid place-items-center">
-                    <div className="w-full max-w-[500px] p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-800">
+                    <div className="w-full max-w-[500px] relative p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-800">
                         <h5 className="text-3xl font-medium text-center font-bebas-neue text-gray-900 dark:text-white">
                             Sign up to our platform
                         </h5>
@@ -15,7 +51,7 @@ const Register = () => {
                             Sign up to our social development platform to
                             explore some cool events
                         </p>
-                        <form className="space-y-6" action="#">
+                        <form className="space-y-6" onSubmit={handleRegister}>
                             <div>
                                 <label
                                     htmlFor="name"
@@ -111,6 +147,9 @@ const Register = () => {
                                     Login
                                 </Link>
                             </div>
+                            {
+                                passError && <p className="text-red-600 text-sm absolute bottom-5">{passError}</p>
+                            }
                         </form>
                     </div>
                 </div>
