@@ -3,7 +3,7 @@ import logo from '../../assets/actify.png'
 
 const Footer = () => {
     return (
-        <footer className="footer-area py-6 lg:py-12">
+        <footer className="footer-area py-10 lg:py-20">
             <Container>
                 <div className="bg-white dark:bg-gray-900">
 
