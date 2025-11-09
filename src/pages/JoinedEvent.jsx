@@ -1,6 +1,7 @@
 import Container from "../components/Container/Container";
 import Jumbortron from "../components/Jumbortron/Jumbortron";
 import EventCardLarge from "../components/EventCardLarge/EventCardLarge";
+import { Link } from "react-router";
 
 const JoinedEvent = () => {
     return (
@@ -13,9 +14,9 @@ const JoinedEvent = () => {
             <section className="joined-event-area pt-20">
                 <Container>
                     <div className="join-event flex flex-col gap-8">
-                        <EventCardLarge />
-                        <EventCardLarge />
-                        <EventCardLarge />
+                        <EventCardLarge><Link to={`/event-detail/1`} className="actify-btn-pill">View Details</Link></EventCardLarge>
+                        <EventCardLarge><Link to={`/event-detail/1`} className="actify-btn-pill">View Details</Link></EventCardLarge>
+                        <EventCardLarge><Link to={`/event-detail/1`} className="actify-btn-pill">View Details</Link></EventCardLarge>
                     </div>
                 </Container>
             </section>

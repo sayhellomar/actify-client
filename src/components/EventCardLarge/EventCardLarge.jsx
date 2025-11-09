@@ -1,6 +1,6 @@
 import { FaMapLocationDot } from "react-icons/fa6";
 
-const EventCardLarge = () => {
+const EventCardLarge = ({children}) => {
     return (
         <div className="flex items-center border border-gray-200 justify-between gap-5 rounded-2xl p-8">
             <div className="date text-center flex-1">
@@ -30,7 +30,7 @@ const EventCardLarge = () => {
                 </p>
             </div>
             <div className="flex-2 text-center">
-                <button className="actify-btn-pill">View Details</button>
+                {children}
             </div>
         </div>
     );

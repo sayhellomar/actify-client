@@ -2,21 +2,21 @@ import Container from "../components/Container/Container";
 import { useEffect } from "react";
 import { initFlowbite } from "flowbite";
 
-const CreateEvent = () => {
+const EditEvent = () => {
     useEffect(() => {
         initFlowbite();
     }, []);
 
     return (
-        <section className="create-event-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
+        <section className="edit-event-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
             <Container>
-                <div className="create-event-inner grid place-items-center">
+                <div className="edit-event-inner grid place-items-center">
                     <div className="w-full max-w-[600px] p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-800">
                         <h5 className="text-3xl font-medium text-center font-bebas-neue text-gray-900 dark:text-white">
-                            Create Event
+                            Edit Event
                         </h5>
                         <p className="text-sm text-center mt-2 mb-6">
-                            Create your own event to make some changes on the world!
+                            Manage your beatiful events to make better.
                         </p>
                         <form className="space-y-6" action="#">
                             <div>
@@ -168,7 +168,7 @@ const CreateEvent = () => {
                                 type="submit"
                                 className="w-full actify-btn-pill"
                             >
-                                Create Event
+                                Submit Changes
                             </button>
                         </form>
                     </div>
@@ -178,4 +178,4 @@ const CreateEvent = () => {
     );
 };
 
-export default CreateEvent;
+export default EditEvent;

@@ -8,6 +8,7 @@ import ManageEvents from "../pages/ManageEvents";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import EventDetails from "../pages/EventDetails";
+import EditEvent from "../pages/EditEvent";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: 'manage-events',
                 element: <ManageEvents />
+            },
+            {
+                path: 'edit-event/:id',
+                element: <EditEvent />
             },
             {
                 path: 'login',

@@ -22,6 +22,10 @@ body {
 	font-family: var(--font-poppins);
 }
 
+.header ul li a.active {
+	@apply text-blue-700
+}
+
 .register-area,
 .login-area,
 .create-event-area {
