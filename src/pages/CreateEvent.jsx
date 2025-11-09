@@ -11,7 +11,7 @@ const CreateEvent = () => {
         <section className="create-event-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
             <Container>
                 <div className="create-event-inner grid place-items-center">
-                    <div className="w-full max-w-[550px] p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-800">
+                    <div className="w-full max-w-[600px] p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-800">
                         <h5 className="text-3xl font-medium text-center font-bebas-neue text-gray-900 dark:text-white">
                             Create Event
                         </h5>
@@ -43,14 +43,15 @@ const CreateEvent = () => {
                                 >
                                     Event Description
                                 </label>
-                                <input
-                                    type="text"
+                                <textarea
+                                    rows="4"
                                     name="event_description"
                                     id="event_description"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="Enter your description here"
                                     required
-                                />
+                                >
+                                </textarea>
                             </div>
 
                             <div>
