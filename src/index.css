@@ -3,6 +3,7 @@
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
+@source "../node_modules/flowbite-datepicker";
 
 @theme {
 	--font-bebas-neue: "Bebas Neue", sans-serif;
@@ -21,15 +22,24 @@ body {
 	font-family: var(--font-poppins);
 }
 
-/* .register-area {
-	position: relative;
-	background-image: url('../src/assets/register-bg.jpg');
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: cover;
+.register-area,
+.login-area,
+.create-event-area {
+	background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: 650px;
 }
 
-.register-area:before {
+.register-area,
+.login-area {
+	background-image: url('../src/assets/register-image.png');
+}
+
+/* .create-event-area {
+	background-image: url('../src/assets/create-event-bg.png');
+} */
+
+/* .register-area:before {
 	content: '';
 	position: absolute;
 	width: 100%;

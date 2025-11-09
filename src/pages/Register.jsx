@@ -1,6 +1,4 @@
-import React from "react";
 import Container from "../components/Container/Container";
-import registerBg from "../assets/register-bg.jpg";
 import { Link } from "react-router";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
 

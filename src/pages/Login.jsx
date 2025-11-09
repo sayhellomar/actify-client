@@ -1,13 +1,12 @@
-import React from 'react';
 import Container from '../components/Container/Container';
 import { FaGithub, FaGoogle } from 'react-icons/fa6';
 import { Link } from 'react-router';
 
 const Login = () => {
     return (
-        <section className="register-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
+        <section className="login-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
             <Container>
-                <div className="register-inner min-h-[calc(100vh-92px-160px-353px)] grid place-items-center">
+                <div className="login-inner min-h-[calc(100vh-92px-160px-353px)] grid place-items-center">
                     <div className="w-full max-w-[450px] p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-800">
                         <h5 className="text-3xl font-medium text-center font-bebas-neue text-gray-900 dark:text-white">
                             Sign in to our platform
