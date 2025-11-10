@@ -1,6 +1,7 @@
 import Container from "../components/Container/Container";
 import { useEffect } from "react";
 import { initFlowbite } from "flowbite";
+import useAuth from "../hooks/useAuth";
 
 const EditEvent = () => {
     const {loading} = useAuth();

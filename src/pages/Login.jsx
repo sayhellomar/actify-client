@@ -3,6 +3,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import Spinner from "../components/Spinner/Spinner";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const { user, loading, setLoading, signIn, googleSignIn } = useAuth();
@@ -29,8 +30,14 @@ const Login = () => {
             .then((userCredential) => {
                 // Add database and show a sweetalert
                 form.reset();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "You successfully logged in!",
+                    showConfirmButton: false,
+                    timer: 3500,
+                });
                 const user = userCredential.user;
-                console.log(user);
             })
             .catch((error) => {
                 console.log(error);

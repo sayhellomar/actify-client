@@ -95,14 +95,14 @@ const Header = () => {
                                                     <button
                                                         onClick={handleShowUserDropdown}
                                                         type="button"
-                                                        className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 cursor-pointer"
+                                                        className="flex text-sm rounded-full md:me-0 cursor-pointer"
                                                         id="user-menu-button"
                                                     >
                                                         <span className="sr-only">
                                                             Open user menu
                                                         </span>
                                                         <img
-                                                            className="w-12 h-12 rounded-full"
+                                                            className="w-18 h-18 rounded-full"
                                                             src={user?.photoURL}
                                                             alt={
                                                                 user?.displayName

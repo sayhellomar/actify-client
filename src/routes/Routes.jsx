@@ -31,15 +31,15 @@ const router = createBrowserRouter([
             },
             {
                 path: 'joined-event',
-                element: <JoinedEvent />
+                element: <PrivateRoute><JoinedEvent /></PrivateRoute>
             },
             {
                 path: 'manage-events',
-                element: <ManageEvents />
+                element: <PrivateRoute><ManageEvents /></PrivateRoute>
             },
             {
                 path: 'edit-event/:id',
-                element: <EditEvent />
+                element: <PrivateRoute><EditEvent /></PrivateRoute>
             },
             {
                 path: 'login',

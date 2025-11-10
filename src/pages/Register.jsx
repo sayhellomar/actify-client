@@ -2,8 +2,11 @@ import Container from "../components/Container/Container";
 import { Link, useNavigate } from "react-router";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner/Spinner";
+import useAxios from "../hooks/useAxios";
+import Swal from "sweetalert2";
+import showError from "../utilities/showError";
 
 const Register = () => {
     const {
@@ -16,6 +19,7 @@ const Register = () => {
     } = useAuth();
     const [passError, setPassError] = useState(null);
     const navigate = useNavigate();
+    const axios = useAxios();
 
     if (user) {
         navigate("/");
@@ -49,18 +53,38 @@ const Register = () => {
         createUser(email, password)
             .then((userCredential) => {
                 // Add database and show a sweetalert
+                axios
+                    .post("/users", {
+                        name,
+                        email,
+                        photo,
+                    })
+                    .then((res) => {
+                        if (res.data.insertedId) {
+                            udpateUserProfile({
+                                displayName: name,
+                                photoURL: photo,
+                            }).then(() => {
+                                navigate("/");
+                            });
+                            form.reset();
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Your account has been created successfully.",
+                                showConfirmButton: false,
+                                timer: 3500,
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        showError(error.code);
+                    });
                 const user = userCredential.user;
-                udpateUserProfile({ displayName: name, photoURL: photo }).then(
-                    () => {
-                        navigate("/");
-                    }
-                );
-                form.reset();
-                console.log(user);
             })
             .catch((error) => {
-                console.log(error);
                 setLoading(false);
+                showError(error.code);
             });
     };
 
