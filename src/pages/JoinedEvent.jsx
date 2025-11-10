@@ -2,8 +2,19 @@ import Container from "../components/Container/Container";
 import Jumbortron from "../components/Jumbortron/Jumbortron";
 import EventCardLarge from "../components/EventCardLarge/EventCardLarge";
 import { Link } from "react-router";
+import useAuth from "../hooks/useAuth";
+import Spinner from "../components/Spinner/Spinner";
 
 const JoinedEvent = () => {
+    const {loading} = useAuth();
+
+    if(loading) {
+        return (
+            <div className="min-h-[calc(100vh-96px-353px)] flex items-center justify-center">
+                <Spinner />
+            </div>
+        );
+    }
     return (
         <>
             <Jumbortron

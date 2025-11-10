@@ -27,6 +27,7 @@ const Login = () => {
         const password = form.password.value;
         signIn(email, password)
             .then((userCredential) => {
+                // Add database and show a sweetalert
                 form.reset();
                 const user = userCredential.user;
                 console.log(user);

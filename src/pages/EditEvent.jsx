@@ -3,6 +3,16 @@ import { useEffect } from "react";
 import { initFlowbite } from "flowbite";
 
 const EditEvent = () => {
+    const {loading} = useAuth();
+
+    if(loading) {
+        return (
+            <div className="min-h-[calc(100vh-96px-353px)] flex items-center justify-center">
+                <Spinner />
+            </div>
+        );
+    }
+    
     useEffect(() => {
         initFlowbite();
     }, []);

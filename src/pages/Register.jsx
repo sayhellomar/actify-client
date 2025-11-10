@@ -48,6 +48,7 @@ const Register = () => {
         }
         createUser(email, password)
             .then((userCredential) => {
+                // Add database and show a sweetalert
                 const user = userCredential.user;
                 udpateUserProfile({ displayName: name, photoURL: photo }).then(
                     () => {

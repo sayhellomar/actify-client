@@ -1,8 +1,18 @@
 import Container from "../components/Container/Container";
 import { useEffect } from "react";
 import { initFlowbite } from "flowbite";
+import useAuth from "../hooks/useAuth";
 
 const CreateEvent = () => {
+    const {loading} = useAuth();
+
+    if(loading) {
+        return (
+            <div className="min-h-[calc(100vh-96px-353px)] flex items-center justify-center">
+                <Spinner />
+            </div>
+        );
+    }
     useEffect(() => {
         initFlowbite();
     }, []);
