@@ -20,7 +20,7 @@ const Header = () => {
     const handleLogout = () => {
         signOutUser()
         .then(() => {
-            navigate('/');
+            navigate('/login');
         });
     }
 
@@ -102,7 +102,7 @@ const Header = () => {
                                                             Open user menu
                                                         </span>
                                                         <img
-                                                            className="w-18 h-18 rounded-full"
+                                                            className="w-14 h-14 rounded-full"
                                                             src={user?.photoURL}
                                                             alt={
                                                                 user?.displayName

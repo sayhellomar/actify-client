@@ -92,12 +92,31 @@ const Register = () => {
         googleSignIn()
             .then((result) => {
                 const user = result.user;
-                navigate("/");
-                console.log(user);
+                axios
+                    .post("/users", {
+                        name: user.displayName,
+                        email: user.email,
+                        photo: user.photoURL,
+                    })
+                    .then((res) => {
+                        if (res.data.insertedId) {
+                            navigate("/");
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Your account has been created successfully.",
+                                showConfirmButton: false,
+                                timer: 3500,
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        showError(error.code);
+                    });
             })
             .catch((error) => {
-                console.log(error);
                 setLoading(false);
+                showError(error.code);
             });
     };
 

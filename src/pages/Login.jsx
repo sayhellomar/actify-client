@@ -1,17 +1,23 @@
 import Container from "../components/Container/Container";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import Spinner from "../components/Spinner/Spinner";
 import Swal from "sweetalert2";
+import showError from "../utilities/showError";
+import { useEffect } from "react";
 
 const Login = () => {
     const { user, loading, setLoading, signIn, googleSignIn } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
-    if (user) {
-        navigate("/");
-    }
+    useEffect(() => {
+        if (user) {
+            navigate(location.state || '/');
+        }
+    }, [user])
+
 
     if (loading || user) {
         return (
@@ -28,7 +34,6 @@ const Login = () => {
         const password = form.password.value;
         signIn(email, password)
             .then((userCredential) => {
-                // Add database and show a sweetalert
                 form.reset();
                 Swal.fire({
                     position: "top-end",
@@ -40,8 +45,8 @@ const Login = () => {
                 const user = userCredential.user;
             })
             .catch((error) => {
-                console.log(error);
                 setLoading(false);
+                showError(error.code);
             });
     };
 
@@ -49,12 +54,11 @@ const Login = () => {
         googleSignIn()
             .then((result) => {
                 const user = result.user;
-                navigate("/");
-                console.log(user);
+                navigate(location.state || '/');
             })
             .catch((error) => {
-                console.log(error);
                 setLoading(false);
+                showError(error.code);
             });
     };
 
