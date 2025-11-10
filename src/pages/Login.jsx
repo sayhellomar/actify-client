@@ -1,8 +1,55 @@
-import Container from '../components/Container/Container';
-import { FaGithub, FaGoogle } from 'react-icons/fa6';
-import { Link } from 'react-router';
+import Container from "../components/Container/Container";
+import { FaGithub, FaGoogle } from "react-icons/fa6";
+import { Link, useNavigate } from "react-router";
+import useAuth from "../hooks/useAuth";
+import Spinner from "../components/Spinner/Spinner";
 
 const Login = () => {
+    const { user, loading, setLoading, signIn, googleSignIn } = useAuth();
+    const navigate = useNavigate();
+
+    if (user) {
+        navigate("/");
+    }
+
+    if (loading || user) {
+        return (
+            <div className="min-h-[calc(100vh-96px-353px)] flex items-center justify-center">
+                <Spinner />
+            </div>
+        );
+    }
+
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        signIn(email, password)
+            .then((userCredential) => {
+                form.reset();
+                const user = userCredential.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                console.log(error);
+                setLoading(false);
+            });
+    };
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then((result) => {
+                const user = result.user;
+                navigate("/");
+                console.log(user);
+            })
+            .catch((error) => {
+                console.log(error);
+                setLoading(false);
+            });
+    };
+
     return (
         <section className="login-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
             <Container>
@@ -15,7 +62,7 @@ const Login = () => {
                             Sign in to our social development platform to
                             explore some cool events
                         </p>
-                        <form className="space-y-6" action="#">
+                        <form className="space-y-6" onSubmit={handleSignIn}>
                             <div>
                                 <label
                                     htmlFor="email"
@@ -56,16 +103,22 @@ const Login = () => {
                                 Login
                             </button>
                             <div>
-                                <p className="text-sm text-center font-medium">- Or sign in with -</p>
+                                <p className="text-sm text-center font-medium">
+                                    - Or sign in with -
+                                </p>
                                 <div className="flex items-center gap-2 mt-4">
-                                    <button className="w-full border border-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center">
+                                    <button
+                                        onClick={handleGoogleSignIn}
+                                        type="button"
+                                        className="w-full border border-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center cursor-pointer"
+                                    >
                                         <FaGoogle />
                                         Google
                                     </button>
-                                    <button className="w-full border border-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center">
+                                    {/* <button className="w-full border border-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center">
                                         <FaGithub />
                                         GitHub
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                             <div className="text-sm text-center font-medium text-gray-500 dark:text-gray-300">

@@ -76,10 +76,6 @@ const Register = () => {
             });
     };
 
-    const handleLogout = () => {
-        
-    }
-
     return (
         <section className="register-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
             <Container>
