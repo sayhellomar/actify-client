@@ -3,14 +3,34 @@ import { Link, useNavigate } from "react-router";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
+import Spinner from "../components/Spinner/Spinner";
 
 const Register = () => {
-    const {createUser, udpateUserProfile} = useAuth();
+    const {
+        user,
+        loading,
+        setLoading,
+        createUser,
+        udpateUserProfile,
+        googleSignIn,
+    } = useAuth();
     const [passError, setPassError] = useState(null);
     const navigate = useNavigate();
 
+    if (user) {
+        navigate("/");
+    }
+
+    if (loading || user) {
+        return (
+            <div className="min-h-[calc(100vh-96px-353px)] flex items-center justify-center">
+                <Spinner />
+            </div>
+        );
+    }
+
     // console.log(user);
-    const handleRegister = e => {
+    const handleRegister = (e) => {
         setPassError(null);
         e.preventDefault();
         const form = e.target;
@@ -20,25 +40,46 @@ const Register = () => {
         const password = form.password.value;
         const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
 
-        if(!passwordRegex.test(password)) {
-            setPassError('Password must have an uppercase letter, a lowercase letter, and be at least 6 characters long.');
+        if (!passwordRegex.test(password)) {
+            setPassError(
+                "Password must have an uppercase letter, a lowercase letter, and be at least 6 characters long."
+            );
             return;
         }
         createUser(email, password)
-        .then(userCredential => {
-            const user = userCredential.user;
-            udpateUserProfile({displayName: name, photoURL: photo})
-            .then(() => {
-                navigate('/');
+            .then((userCredential) => {
+                const user = userCredential.user;
+                udpateUserProfile({ displayName: name, photoURL: photo }).then(
+                    () => {
+                        navigate("/");
+                    }
+                );
+                form.reset();
+                console.log(user);
             })
-            form.reset();
-            console.log(user);
-        })
-        .catch(error => {
-            console.log(error);
-        })
+            .catch((error) => {
+                console.log(error);
+                setLoading(false);
+            });
+    };
 
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then((result) => {
+                const user = result.user;
+                navigate("/");
+                console.log(user);
+            })
+            .catch((error) => {
+                console.log(error);
+                setLoading(false);
+            });
+    };
+
+    const handleLogout = () => {
+        
     }
+
     return (
         <section className="register-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
             <Container>
@@ -126,16 +167,22 @@ const Register = () => {
                                 Register
                             </button>
                             <div>
-                                <p className="text-sm text-center font-medium">- Or sign up with -</p>
+                                <p className="text-sm text-center font-medium">
+                                    - Or sign up with -
+                                </p>
                                 <div className="flex items-center gap-2 mt-4">
-                                    <button className="w-full border border-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center cursor-pointer">
+                                    <button
+                                        onClick={handleGoogleSignIn}
+                                        type="button"
+                                        className="w-full border border-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center cursor-pointer"
+                                    >
                                         <FaGoogle />
                                         Google
                                     </button>
-                                    <button className="w-full border border-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center cursor-pointer">
+                                    {/* <button className="w-full border border-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center cursor-pointer">
                                         <FaGithub />
                                         GitHub
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                             <div className="text-sm text-center font-medium text-gray-500 dark:text-gray-300">
@@ -147,9 +194,11 @@ const Register = () => {
                                     Login
                                 </Link>
                             </div>
-                            {
-                                passError && <p className="text-red-600 text-sm absolute bottom-5">{passError}</p>
-                            }
+                            {passError && (
+                                <p className="text-red-600 text-sm absolute bottom-5">
+                                    {passError}
+                                </p>
+                            )}
                         </form>
                     </div>
                 </div>

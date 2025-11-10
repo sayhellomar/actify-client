@@ -1,24 +1,29 @@
 import Container from "../Container/Container";
 import logo from "../../assets/actify.png";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import NavHref from "../NavHref/NavHref";
 import useAuth from "../../hooks/useAuth";
-import { useEffect } from "react";
+import { useState } from "react";
+import './Header.css';
+import Spinner from "../Spinner/Spinner";
 
 
 const Header = () => {
-    const { user } = useAuth();
+    const { user, loading, signOutUser } = useAuth();
+    const [showUserDropdown, setShowUserDropdown] = useState(false);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        initFlowbite();
-        const timer = setTimeout(() => {
-            initFlowbite();
-        }, 300);
+    const handleShowUserDropdown = () => {
+        setShowUserDropdown(!showUserDropdown);
+    }
 
-        return () => clearTimeout(timer);
-    }, [location.pathname]);
+    const handleLogout = () => {
+        signOutUser()
+        .then(() => {
+            navigate('/');
+        });
+    }
 
-    console.log(user);
     return (
         <>
 
@@ -72,7 +77,10 @@ const Header = () => {
                                         <NavHref link="upcoming-events">
                                             Upcoming Events
                                         </NavHref>
-                                        {user ? (
+                                        {
+                                        loading ? <Spinner />
+                                        :
+                                        user ? (
                                             <>
                                                 <NavHref link="create-event">
                                                     Create Event
@@ -83,14 +91,12 @@ const Header = () => {
                                                 <NavHref link="manage-events">
                                                     Manage Events
                                                 </NavHref>
-                                                <div>
+                                                <div className="relative">
                                                     <button
+                                                        onClick={handleShowUserDropdown}
                                                         type="button"
                                                         className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                                                         id="user-menu-button"
-                                                        aria-expanded="false"
-                                                        data-dropdown-toggle="user-dropdown"
-                                                        data-dropdown-placement="bottom"
                                                     >
                                                         <span className="sr-only">
                                                             Open user menu
@@ -105,8 +111,7 @@ const Header = () => {
                                                     </button>
 
                                                     <div
-                                                        className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600"
-                                                        id="user-dropdown"
+                                                        className={`${showUserDropdown && `show-dropdown`} z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600`}
                                                     >
                                                         <div className="px-4 py-3">
                                                             <span className="block text-sm text-gray-900 dark:text-white">
@@ -120,7 +125,6 @@ const Header = () => {
                                                         </div>
                                                         <ul
                                                             className="py-2"
-                                                            aria-labelledby="user-menu-button"
                                                         >
                                                             <li>
                                                                 <Link
@@ -131,26 +135,27 @@ const Header = () => {
                                                                 </Link>
                                                             </li>
                                                             <li>
-                                                                <a
-                                                                    href="#"
+                                                                <Link
+                                                                    to="/joined-event"
                                                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                                 >
-                                                                    Settings
-                                                                </a>
+                                                                    Joined Event
+                                                                </Link>
                                                             </li>
                                                             <li>
-                                                                <a
-                                                                    href="#"
+                                                                <Link
+                                                                    to="/manage-events"
                                                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                                 >
-                                                                    Earnings
-                                                                </a>
+                                                                    Manage Event
+                                                                </Link>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                                 <NavHref>
                                                     <button
+                                                        onClick={handleLogout}
                                                         type="button"
                                                         className="actify-btn-pill"
                                                     >
