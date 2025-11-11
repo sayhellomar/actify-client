@@ -23,6 +23,12 @@ const CreateEvent = () => {
         initFlowbite();
     }, []);
 
+    // const customDate = '11/16/2025';
+    // const [month, day, year] = customDate.split('/');
+    // const formattedDate = new Date(`${year}-${month}-${day}T00:00:00Z`);
+    // console.log({day, month, year});
+    // console.log(formattedDate);
+
     const handleCreateEvent = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -36,7 +42,7 @@ const CreateEvent = () => {
         const eventEndTime = form.event_end_time.value;
         const email = form.email.value;
 
-        const [day, month, year] = eventDate.split('/');
+        const [month, day, year] = eventDate.split('/');
         const formatedDate = `${year}-${month}-${day}T00:00:00Z`;
 
         axios.post('/events', {
