@@ -59,6 +59,7 @@ const CreateEvent = () => {
         .then(res => {
             console.log(res.data);
             if(res.data.insertedId) {
+                form.reset();
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -153,15 +154,15 @@ const CreateEvent = () => {
                                     <option value="" disabled>
                                         Choose a event type
                                     </option>
-                                    <option value="cleanup">Cleanup</option>
-                                    <option value="plantation">
+                                    <option value="Cleanup">Cleanup</option>
+                                    <option value="Plantation">
                                         Plantation
                                     </option>
-                                    <option value="donation">Donation</option>
-                                    <option value="food_distribution">
+                                    <option value="Donation">Donation</option>
+                                    <option value="Food Distribution">
                                         Food Distribution
                                     </option>
-                                    <option value="health_check_up">
+                                    <option value="Health Check-up">
                                         Health Check-up
                                     </option>
                                 </select>

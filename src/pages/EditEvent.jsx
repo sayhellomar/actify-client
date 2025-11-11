@@ -1,19 +1,42 @@
 import Container from "../components/Container/Container";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { initFlowbite } from "flowbite";
 import useAuth from "../hooks/useAuth";
+import { useLoaderData } from "react-router";
 
 const EditEvent = () => {
-    const {loading} = useAuth();
+    const [startTime, setStartTime] = useState("09:00");
+    const [endTime, setEndTime] = useState("18:00");
+    const { loading } = useAuth();
+    const event = useLoaderData();
 
-    if(loading) {
+    const {
+        _id,
+        eventTitle,
+        eventDescription,
+        eventType,
+        eventImageUrl,
+        eventLocation,
+        eventDate,
+        eventStartTime,
+        eventEndTime,
+        email,
+    } = event;
+
+    const month = new Date(eventDate).getMonth() + 1;
+    const date = new Date(eventDate).getDate();
+    const year = new Date(eventDate).getFullYear();
+
+    const fullDate = `${month}/${date}/${year}`;
+
+    if (loading) {
         return (
             <div className="min-h-[calc(100vh-96px-353px)] flex items-center justify-center">
                 <Spinner />
             </div>
         );
     }
-    
+
     useEffect(() => {
         initFlowbite();
     }, []);
@@ -41,6 +64,7 @@ const EditEvent = () => {
                                     type="text"
                                     name="event_title"
                                     id="event_title"
+                                    defaultValue={eventTitle}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="Enter your title here"
                                     required
@@ -57,11 +81,11 @@ const EditEvent = () => {
                                     rows="4"
                                     name="event_description"
                                     id="event_description"
+                                    defaultValue={eventDescription}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="Enter your description here"
                                     required
-                                >
-                                </textarea>
+                                ></textarea>
                             </div>
 
                             <div>
@@ -74,7 +98,7 @@ const EditEvent = () => {
                                 <select
                                     id="event_type"
                                     name="event_type"
-                                    defaultValue=""
+                                    defaultValue={eventType}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 >
                                     <option value="" disabled>
@@ -105,6 +129,7 @@ const EditEvent = () => {
                                     type="text"
                                     name="event_image_url"
                                     id="event_image_url"
+                                    defaultValue={eventImageUrl}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="Enter your photo URL here"
                                     required
@@ -122,6 +147,7 @@ const EditEvent = () => {
                                     type="text"
                                     name="event_location"
                                     id="event_location"
+                                    defaultValue={eventLocation}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="Enter your photo URL here"
                                     required
@@ -148,12 +174,89 @@ const EditEvent = () => {
                                         datepicker="true"
                                         name="event_date"
                                         id="default-datepicker"
+                                        defaultValue={fullDate}
                                         datepicker-autohide="true"
                                         datepicker-min-date={new Date().toLocaleDateString()}
                                         type="text"
                                         className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Select date"
                                     />
+                                </div>
+                            </div>
+
+                            <div className="flex gap-2">
+                                <div className="w-full">
+                                    <label
+                                        htmlFor="start-time"
+                                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    >
+                                        Start time:
+                                    </label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                                            <svg
+                                                className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                                aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <input
+                                            type="time"
+                                            name="event_start_time"
+                                            id="start-time"
+                                            value={startTime}
+                                            onChange={(e) =>
+                                                setStartTime(e.target.value)
+                                            }
+                                            required
+                                            className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="w-full">
+                                    <label
+                                        htmlFor="end-time"
+                                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    >
+                                        End time:
+                                    </label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                                            <svg
+                                                className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                                aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <input
+                                            type="time"
+                                            name="event_end_time"
+                                            id="end-time"
+                                            value={endTime}
+                                            onChange={(e) =>
+                                                setEndTime(e.target.value)
+                                            }
+                                            required
+                                            className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
@@ -168,6 +271,7 @@ const EditEvent = () => {
                                     type="email"
                                     name="email"
                                     id="email"
+                                    defaultValue={email}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                     placeholder="Enter your email here"
                                     required

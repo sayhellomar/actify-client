@@ -4,17 +4,33 @@ import EventCardLarge from "../components/EventCardLarge/EventCardLarge";
 import { Link } from "react-router";
 import useAuth from "../hooks/useAuth";
 import Spinner from "../components/Spinner/Spinner";
+import { useEffect, useState } from "react";
+import useAxios from "../hooks/useAxios";
 
 const ManageEvents = () => {
-    const {loading} = useAuth();
+    const [events, setEvents] = useState([]);
+    const { user, loading } = useAuth();
+    const axios = useAxios();
 
-    if(loading) {
+    if (loading) {
         return (
             <div className="min-h-[calc(100vh-96px-353px)] flex items-center justify-center">
                 <Spinner />
             </div>
         );
     }
+
+    useEffect(() => {
+        axios
+            .get(`/events?email=${user.email}`)
+            .then((res) => {
+                setEvents(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [axios, user]);
+
     return (
         <>
             <Jumbortron
@@ -25,21 +41,16 @@ const ManageEvents = () => {
             <section className="joined-event-area pt-20">
                 <Container>
                     <div className="join-event flex flex-col gap-8">
-                        <EventCardLarge>
-                            <Link to={`/edit-event/1`} className="actify-btn-pill">
-                                Edit Event
-                            </Link>
-                        </EventCardLarge>
-                        <EventCardLarge>
-                            <Link className="actify-btn-pill">
-                                Edit Event
-                            </Link>
-                        </EventCardLarge>
-                        <EventCardLarge>
-                            <Link className="actify-btn-pill">
-                                Edit Event
-                            </Link>
-                        </EventCardLarge>
+                        {events.map((event) => (
+                            <EventCardLarge key={event._id} event={event}>
+                                <Link
+                                    to={`/edit-event/${event._id}`}
+                                    className="actify-btn-pill"
+                                >
+                                    Edit Event
+                                </Link>
+                            </EventCardLarge>
+                        ))}
                     </div>
                 </Container>
             </section>
