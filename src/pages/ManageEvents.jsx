@@ -41,16 +41,32 @@ const ManageEvents = () => {
             <section className="joined-event-area pt-20">
                 <Container>
                     <div className="join-event flex flex-col gap-8">
-                        {events.map((event) => (
-                            <EventCardLarge key={event._id} event={event}>
-                                <Link
-                                    to={`/edit-event/${event._id}`}
-                                    className="actify-btn-pill"
-                                >
-                                    Edit Event
-                                </Link>
-                            </EventCardLarge>
-                        ))}
+                        {events.length ? (
+                            events.map((event) => (
+                                <EventCardLarge key={event._id} event={event}>
+                                    <Link
+                                        to={`/edit-event/${event._id}`}
+                                        className="actify-btn-pill"
+                                    >
+                                        Edit Event
+                                    </Link>
+                                </EventCardLarge>
+                            ))
+                        ) : (
+                            <div className="text-center min-h-[calc(100vh-104px-332px-80px-353px)] grid items-center">
+                                <div>
+                                    <h3 className="text-5xl font-bold font-bebas-neue mb-8">
+                                        No Events Found!
+                                    </h3>
+                                    <Link
+                                        className="actify-btn-pill"
+                                        to="/create-event"
+                                    >
+                                        Create Event
+                                    </Link>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </Container>
             </section>

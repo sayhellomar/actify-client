@@ -52,9 +52,6 @@ const EventDetails = () => {
         );
     }
 
-    console.log(isUserJoinedEvent);
-
-
     const handleJoinEvent = () => {
         if (!user) {
             navigate("/login", { state: location.pathname });
@@ -133,9 +130,9 @@ const EventDetails = () => {
                             </p>
                             {user?.email === email ? (
                                 <div className="flex items-center gap-1 bg-blue-700 rounded-2xl w-max py-3 px-5 absolute top-16 left-16">
-                                    <span class="inline-flex items-center justify-center w-6 h-6 me-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full dark:bg-gray-700 dark:text-blue-400">
+                                    <span className="inline-flex items-center justify-center w-6 h-6 me-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full dark:bg-gray-700 dark:text-blue-400">
                                         <svg
-                                            class="w-3 h-3"
+                                            className="w-3 h-3"
                                             aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg"
                                             fill="currentColor"
@@ -150,7 +147,7 @@ const EventDetails = () => {
                                                 d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"
                                             />
                                         </svg>
-                                        <span class="sr-only">
+                                        <span className="sr-only">
                                             Icon description
                                         </span>
                                     </span>

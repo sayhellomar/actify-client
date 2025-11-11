@@ -3,12 +3,15 @@ import { useEffect, useState } from "react";
 import { initFlowbite } from "flowbite";
 import useAuth from "../hooks/useAuth";
 import { useLoaderData } from "react-router";
+import useAxios from "../hooks/useAxios";
+import Swal from "sweetalert2";
 
 const EditEvent = () => {
     const [startTime, setStartTime] = useState("09:00");
     const [endTime, setEndTime] = useState("18:00");
     const { loading } = useAuth();
     const event = useLoaderData();
+    const axios = useAxios();
 
     const {
         _id,
@@ -41,6 +44,62 @@ const EditEvent = () => {
         initFlowbite();
     }, []);
 
+    const handleEditEvent = e => {
+        e.preventDefault();
+        const form = e.target;
+        const eventTitle = form.event_title.value;
+        const eventDescription = form.event_description.value;
+        const eventType = form.event_type.value;
+        const eventImageUrl = form.event_image_url.value;
+        const eventLocation = form.event_location.value;
+        const eventDate = form.event_date.value;
+        const eventStartTime = form.event_start_time.value;
+        const eventEndTime = form.event_end_time.value;
+        const email = form.email.value;
+
+        const [month, day, year] = eventDate.split('/');
+        const formatedDate = `${year}-${month}-${day}T00:00:00Z`;
+
+        axios.patch(`/events/${_id}`, {
+            eventTitle,
+            eventDescription,
+            eventType,
+            eventImageUrl,
+            eventLocation,
+            eventDate:formatedDate,
+            eventStartTime,
+            eventEndTime,
+            email,
+        })
+        .then(res => {
+            console.log(res.data);
+            if(res.data.modifiedCount) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your event updated successfully",
+                    showConfirmButton: false,
+                    timer: 3500,
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+        console.log({
+            eventTitle,
+            eventDescription,
+            eventType,
+            eventImageUrl,
+            eventLocation,
+            formatedDate,
+            eventStartTime,
+            eventEndTime,
+            email,
+        });
+    }
+
     return (
         <section className="edit-event-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
             <Container>
@@ -52,7 +111,7 @@ const EditEvent = () => {
                         <p className="text-sm text-center mt-2 mb-6">
                             Manage your beatiful events to make better.
                         </p>
-                        <form className="space-y-6" action="#">
+                        <form className="space-y-6" onSubmit={handleEditEvent}>
                             <div>
                                 <label
                                     htmlFor="event_title"
@@ -104,15 +163,15 @@ const EditEvent = () => {
                                     <option value="" disabled>
                                         Choose a event type
                                     </option>
-                                    <option value="cleanup">Cleanup</option>
-                                    <option value="plantation">
+                                    <option value="Cleanup">Cleanup</option>
+                                    <option value="Plantation">
                                         Plantation
                                     </option>
-                                    <option value="donation">Donation</option>
-                                    <option value="food_distribution">
+                                    <option value="Donation">Donation</option>
+                                    <option value="Food Distribution">
                                         Food Distribution
                                     </option>
-                                    <option value="health_check_up">
+                                    <option value="Health Check-up">
                                         Health Check-up
                                     </option>
                                 </select>
