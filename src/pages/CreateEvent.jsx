@@ -84,14 +84,14 @@ const CreateEvent = () => {
 
 
     return (
-        <section className="create-event-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
+        <section className="create-event-area py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-10 rounded-2xl">
             <Container>
                 <div className="create-event-inner grid place-items-center">
-                    <div className="w-full max-w-[600px] p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-800">
+                    <div className="w-full max-w-[600px] p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-900">
                         <h5 className="text-3xl font-medium text-center font-bebas-neue text-gray-900 dark:text-white">
                             Create Event
                         </h5>
-                        <p className="text-sm text-center mt-2 mb-6">
+                        <p className="text-sm text-center mt-2 mb-6 dark:text-gray-300">
                             Create your own event to make some changes on the
                             world!
                         </p>

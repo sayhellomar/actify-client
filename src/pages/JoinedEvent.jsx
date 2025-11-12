@@ -42,7 +42,7 @@ const JoinedEvent = () => {
                 <Container>
                     <div className="join-event flex flex-col gap-8">
 
-                        {joinedEvent ? (
+                        {joinedEvent.length ? (
                             joinedEvent.map((singleJoinedEvent) => (
                                 <EventCardLarge key={singleJoinedEvent._id}
                                         event={singleJoinedEvent.event}>
@@ -57,7 +57,7 @@ const JoinedEvent = () => {
                         ) : (
                             <div className="text-center min-h-[calc(100vh-104px-332px-80px-353px)] grid items-center">
                                 <div>
-                                    <h3 className="text-5xl font-bold font-bebas-neue mb-8">
+                                    <h3 className="text-5xl font-bold font-bebas-neue mb-8 dark:text-white">
                                         No Events Found!
                                     </h3>
                                     <Link

@@ -52,7 +52,6 @@ const Register = () => {
         }
         createUser(email, password)
             .then((userCredential) => {
-                // Add database and show a sweetalert
                 axios
                     .post("/users", {
                         name,
@@ -121,14 +120,14 @@ const Register = () => {
     };
 
     return (
-        <section className="register-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
+        <section className="register-area py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-10 rounded-2xl">
             <Container>
                 <div className="register-inner grid place-items-center">
-                    <div className="w-full max-w-[500px] relative p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-800">
+                    <div className="w-full max-w-[500px] relative p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-900">
                         <h5 className="text-3xl font-medium text-center font-bebas-neue text-gray-900 dark:text-white">
                             Sign up to our platform
                         </h5>
-                        <p className="text-sm text-center mt-2 mb-6">
+                        <p className="text-sm text-center mt-2 mb-6 dark:text-gray-300">
                             Sign up to our social development platform to
                             explore some cool events
                         </p>
@@ -207,14 +206,14 @@ const Register = () => {
                                 Register
                             </button>
                             <div>
-                                <p className="text-sm text-center font-medium">
+                                <p className="text-sm text-center font-medium dark:text-gray-300">
                                     - Or sign up with -
                                 </p>
                                 <div className="flex items-center gap-2 mt-4">
                                     <button
                                         onClick={handleGoogleSignIn}
                                         type="button"
-                                        className="w-full border border-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center cursor-pointer"
+                                        className="w-full border border-gray-300 dark:border-gray-800 dark:text-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center cursor-pointer"
                                     >
                                         <FaGoogle />
                                         Google
@@ -229,13 +228,13 @@ const Register = () => {
                                 Already have an account?{" "}
                                 <Link
                                     to="/login"
-                                    className="text-black hover:underline"
+                                    className="text-black dark:text-white hover:underline"
                                 >
                                     Login
                                 </Link>
                             </div>
                             {passError && (
-                                <p className="text-red-600 text-sm absolute bottom-5">
+                                <p className="text-red-600 text-sm absolute bottom-5 left-0 right-0 text-center px-6">
                                     {passError}
                                 </p>
                             )}

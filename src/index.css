@@ -5,6 +5,8 @@
 @source "../node_modules/flowbite";
 @source "../node_modules/flowbite-datepicker";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --font-bebas-neue: "Bebas Neue", sans-serif;
     --font-poppins: "Poppins", sans-serif;
@@ -22,6 +24,10 @@ body {
     font-family: var(--font-poppins);
 }
 
+.dark body {
+    background-color: #111827;
+}
+
 .header ul li a.active {
     @apply text-blue-700;
 }
@@ -37,6 +43,11 @@ body {
 .register-area,
 .login-area {
     background-image: url("../src/assets/register-image.png");
+}
+
+.dark .register-area,
+.dark .login-area {
+    background-image: none;
 }
 
 .swal2-show {

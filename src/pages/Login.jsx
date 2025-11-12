@@ -63,14 +63,14 @@ const Login = () => {
     };
 
     return (
-        <section className="login-area py-20 bg-actify-blue/30 mx-10 rounded-2xl">
+        <section className="login-area py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-10 rounded-2xl">
             <Container>
                 <div className="login-inner min-h-[calc(100vh-92px-160px-353px)] grid place-items-center">
-                    <div className="w-full max-w-[450px] p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-800">
+                    <div className="w-full max-w-[450px] p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-900">
                         <h5 className="text-3xl font-medium text-center font-bebas-neue text-gray-900 dark:text-white">
                             Sign in to our platform
                         </h5>
-                        <p className="text-sm text-center mt-2 mb-6">
+                        <p className="text-sm text-center mt-2 mb-6 dark:text-gray-300">
                             Sign in to our social development platform to
                             explore some cool events
                         </p>
@@ -115,14 +115,14 @@ const Login = () => {
                                 Login
                             </button>
                             <div>
-                                <p className="text-sm text-center font-medium">
+                                <p className="text-sm text-center font-medium dark:text-gray-300">
                                     - Or sign in with -
                                 </p>
                                 <div className="flex items-center gap-2 mt-4">
                                     <button
                                         onClick={handleGoogleSignIn}
                                         type="button"
-                                        className="w-full border border-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center cursor-pointer"
+                                        className="w-full border border-gray-300 dark:border-gray-800 dark:text-gray-300 font-medium rounded-lg text-sm px-7 py-3 flex items-center gap-2 justify-center cursor-pointer"
                                     >
                                         <FaGoogle />
                                         Google
@@ -137,7 +137,7 @@ const Login = () => {
                                 Don't have an account?{" "}
                                 <Link
                                     to="/register"
-                                    className="text-black hover:underline"
+                                    className="text-black dark:text-white hover:underline"
                                 >
                                     Register
                                 </Link>

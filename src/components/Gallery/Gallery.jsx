@@ -12,13 +12,13 @@ const Gallery = () => {
                 <div className="gallery-inner">
                     <div className="flex justify-between">
                         <div>
-                            <p className="opacity-70 mb-2">Event Gallery</p>
-                            <h4 className="text-5xl font-bebas-neue">
+                            <p className="opacity-70 mb-2 dark:text-gray-300">Event Gallery</p>
+                            <h4 className="text-5xl font-bebas-neue dark:text-white">
                                 Explore our events
                             </h4>
                         </div>
                         <div>
-                            <p>Check out our event gallery. You're going to love it!</p>
+                            <p className="dark:text-gray-300">Check out our event gallery. You're going to love it!</p>
                         </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-3 gap-8 mt-8">

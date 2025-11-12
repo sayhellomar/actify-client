@@ -1,43 +1,54 @@
 import Container from "../Container/Container";
 import logo from "../../assets/actify.png";
+import logoWhite from "../../assets/actify-white.png";
 import { Link, useNavigate } from "react-router";
 import NavHref from "../NavHref/NavHref";
 import useAuth from "../../hooks/useAuth";
-import { useState } from "react";
-import './Header.css';
+import { useEffect, useState } from "react";
+import "./Header.css";
 import Spinner from "../Spinner/Spinner";
-
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const Header = () => {
-    const { user, loading, signOutUser } = useAuth();
+    const { user, loading, signOutUser, theme, setTheme } = useAuth();
     const [showUserDropdown, setShowUserDropdown] = useState(false);
+    // const [theme, setTheme] = useState(localStorage.getItem('theme') || false);
     const navigate = useNavigate();
 
     const handleShowUserDropdown = () => {
         setShowUserDropdown(!showUserDropdown);
-    }
+    };
 
     const handleLogout = () => {
-        signOutUser()
-        .then(() => {
-            navigate('/login');
+        signOutUser().then(() => {
+            navigate("/login");
         });
-    }
+    };
+
+    const handleThemeSwitch = () => {
+        setTheme(!theme);
+    };
+
+    useEffect(() => {
+        const html = document.querySelector('html');
+        html.classList.remove('light', 'dark');
+        html.classList.add(theme ? 'dark' : 'light');
+        localStorage.setItem('theme', theme ? 'dark' : 'light');
+    }, [theme])
 
     return (
         <>
-
-            <header className="header-area">
+            <header className="header-area bg-white dark:bg-gray-900">
                 <Container>
                     <div className="header">
-                        <nav className="bg-white border-gray-200 dark:bg-gray-900">
+                        <nav className="">
                             <div className="flex flex-wrap items-center justify-between mx-auto py-6">
                                 <Link
                                     to="/"
                                     className="flex items-center space-x-3 rtl:space-x-reverse"
                                 >
                                     <img
-                                        src={logo}
+                                        src={theme ? logoWhite : logo}
                                         className="h-11"
                                         alt="Actify Logo"
                                     />
@@ -77,10 +88,9 @@ const Header = () => {
                                         <NavHref link="upcoming-events">
                                             Upcoming Events
                                         </NavHref>
-                                        {
-                                        loading ? <Spinner />
-                                        :
-                                        user ? (
+                                        {loading ? (
+                                            <Spinner />
+                                        ) : user ? (
                                             <>
                                                 <NavHref link="create-event">
                                                     Create Event
@@ -93,7 +103,9 @@ const Header = () => {
                                                 </NavHref>
                                                 <div className="relative">
                                                     <button
-                                                        onClick={handleShowUserDropdown}
+                                                        onClick={
+                                                            handleShowUserDropdown
+                                                        }
                                                         type="button"
                                                         className="flex text-sm rounded-full md:me-0 cursor-pointer"
                                                         id="user-menu-button"
@@ -102,7 +114,7 @@ const Header = () => {
                                                             Open user menu
                                                         </span>
                                                         <img
-                                                            className="w-14 h-14 rounded-full"
+                                                            className="w-14 h-14 rounded-full object-cover"
                                                             src={user?.photoURL}
                                                             alt={
                                                                 user?.displayName
@@ -111,7 +123,10 @@ const Header = () => {
                                                     </button>
 
                                                     <div
-                                                        className={`${showUserDropdown && `show-dropdown`} z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600`}
+                                                        className={`${
+                                                            showUserDropdown &&
+                                                            `show-dropdown`
+                                                        } z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600`}
                                                     >
                                                         <div className="px-4 py-3">
                                                             <span className="block text-sm text-gray-900 dark:text-white">
@@ -123,9 +138,7 @@ const Header = () => {
                                                                 {user?.email}
                                                             </span>
                                                         </div>
-                                                        <ul
-                                                            className="py-2"
-                                                        >
+                                                        <ul className="py-2">
                                                             <li>
                                                                 <Link
                                                                     to="/create-event"
@@ -175,6 +188,18 @@ const Header = () => {
                                                 </NavHref>
                                             </>
                                         )}
+                                        <li className="leading-none">
+                                            <button
+                                                className="cursor-pointer dark:text-white"
+                                                onClick={handleThemeSwitch}
+                                            >
+                                                {theme ? (
+                                                    <MdLightMode size="1.3em" />
+                                                ) : (
+                                                    <MdDarkMode size="1.3em" />
+                                                )}
+                                            </button>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

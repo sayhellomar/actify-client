@@ -1,7 +1,11 @@
 import Container from "../Container/Container";
 import logo from '../../assets/actify.png'
+import logoWhite from "../../assets/actify-white.png";
+import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router";
 
 const Footer = () => {
+    const { theme } = useAuth();
     return (
         <footer className="footer-area py-10 lg:py-20">
             <Container>
@@ -14,73 +18,100 @@ const Footer = () => {
                                     className="flex items-center"
                                 >
                                     <img
-                                        src={logo}
+                                        src={theme ? logoWhite : logo}
                                         className="h-8 me-3"
                                         alt="Actify"
                                     />
                                 </a>
                             </div>
-                            <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                            <div className="grid grid-cols-2 gap-6 lg:gap-12 sm:grid-cols-3">
                                 <div>
                                     <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                                        Resources
+                                        Browse
                                     </h2>
                                     <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                         <li className="mb-4">
-                                            <a
-                                                href="https://flowbite.com/"
+                                            <Link
+                                                to="/login"
                                                 className="hover:underline"
                                             >
-                                                Flowbite
-                                            </a>
+                                                Login
+                                            </Link>
                                         </li>
-                                        <li>
-                                            <a
-                                                href="https://tailwindcss.com/"
+                                        <li className="mb-4">
+                                            <Link
+                                                to="/"
                                                 className="hover:underline"
                                             >
-                                                Tailwind CSS
-                                            </a>
+                                                Home
+                                            </Link>
+                                        </li>
+                                        <li className="mb-4">
+                                            <Link
+                                                to="/upcoming-events"
+                                                className="hover:underline"
+                                            >
+                                                Events
+                                            </Link>
+                                        </li>
+                                        <li className="mb-4">
+                                            <Link
+                                                to="/register"
+                                                className="hover:underline"
+                                            >
+                                                Register
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                                        Follow us
+                                        Explore
                                     </h2>
                                     <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                         <li className="mb-4">
-                                            <a
-                                                href="https://github.com/themesberg/flowbite"
-                                                className="hover:underline "
-                                            >
-                                                Github
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://discord.gg/4eeurUVvTy"
+                                            <Link
+                                                to="/create-event"
                                                 className="hover:underline"
                                             >
-                                                Discord
-                                            </a>
+                                                Create Event
+                                            </Link>
+                                        </li>
+                                        <li className="mb-4">
+                                            <Link
+                                                to="/joined-event"
+                                                className="hover:underline"
+                                            >
+                                                Joined Event
+                                            </Link>
+                                        </li>
+                                        <li className="mb-4">
+                                            <Link
+                                                to="/manage-events"
+                                                className="hover:underline"
+                                            >
+                                                Manage Events
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                                        Legal
+                                        Others
                                     </h2>
                                     <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                         <li className="mb-4">
-                                            <a href="#" className="hover:underline">
-                                                Privacy Policy
+                                            <a href="https://www.youtube.com/watch?v=_-AS5DtDeqs" target="_blank" className="hover:underline">
+                                                Watch Video
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="#" className="hover:underline">
-                                                Terms &amp; Conditions
-                                            </a>
+                                        <li className="mb-4">
+                                            <Link
+                                                to="/event-detail/691226fb606878d76fa2f75b"
+                                                className="hover:underline"
+                                            >
+                                                Popular Event
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>

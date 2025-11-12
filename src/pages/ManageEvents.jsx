@@ -55,7 +55,7 @@ const ManageEvents = () => {
                         ) : (
                             <div className="text-center min-h-[calc(100vh-104px-332px-80px-353px)] grid items-center">
                                 <div>
-                                    <h3 className="text-5xl font-bold font-bebas-neue mb-8">
+                                    <h3 className="text-5xl font-bold font-bebas-neue mb-8 dark:text-white">
                                         No Events Found!
                                     </h3>
                                     <Link

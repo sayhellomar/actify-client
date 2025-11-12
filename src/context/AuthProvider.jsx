@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || false);
     const googleProvider = new GoogleAuthProvider();
 
     const createUser = (email, password) => {
@@ -43,6 +44,8 @@ const AuthProvider = ({children}) => {
     const authValue = {
         user,
         loading,
+        theme,
+        setTheme,
         setLoading,
         createUser,
         udpateUserProfile,

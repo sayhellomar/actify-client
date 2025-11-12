@@ -5,16 +5,13 @@ import useAxios from "../hooks/useAxios";
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner/Spinner";
 import SearchFilter from "../components/SearchFilter/SearchFilter";
+import { Link } from "react-router";
 
 const UpcomingEvents = () => {
     const axios = useAxios();
     const [upcomingEvents, setUpcomingEvents] = useState();
-    const [eventTitle, setEventTitle] = useState('');
-    const [eventType, setEventType] = useState('');
-    // const [filters, setFilters] = useState({
-    //     eventTitle: "",
-    //     eventType: "",
-    // });
+    const [eventTitle, setEventTitle] = useState("");
+    const [eventType, setEventType] = useState("");
 
     useEffect(() => {
         axios.get("/upcoming-events").then((res) => {
@@ -32,10 +29,12 @@ const UpcomingEvents = () => {
     };
 
     useEffect(() => {
-        axios.get(`/search?eventTitle=${eventTitle}&eventType=${eventType}`).then((res) => {
-            setUpcomingEvents(res.data);
-        });
-    }, [axios, eventTitle, eventType])
+        axios
+            .get(`/search?eventTitle=${eventTitle}&eventType=${eventType}`)
+            .then((res) => {
+                setUpcomingEvents(res.data);
+            });
+    }, [axios, eventTitle, eventType]);
 
     if (!upcomingEvents) {
         return (
@@ -44,6 +43,8 @@ const UpcomingEvents = () => {
             </div>
         );
     }
+
+    console.log(upcomingEvents.length);
     return (
         <>
             <Jumbortron
@@ -55,12 +56,28 @@ const UpcomingEvents = () => {
             <section className="upcoming-events-area pt-20">
                 <Container>
                     <div className="upcoming-events grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                        {upcomingEvents.map((upcomingEvent) => (
-                            <EventCard
-                                key={upcomingEvent._id}
-                                event={upcomingEvent}
-                            />
-                        ))}
+                        {upcomingEvents.length !== 0 ? (
+                            upcomingEvents.map((upcomingEvent) => (
+                                <EventCard
+                                    key={upcomingEvent._id}
+                                    event={upcomingEvent}
+                                />
+                            ))
+                        ) : (
+                            <div className="text-center col-span-12">
+                                <div>
+                                    <h3 className="text-5xl font-bold font-bebas-neue mb-8 dark:text-white">
+                                        No Events Found!
+                                    </h3>
+                                    <Link
+                                        className="actify-btn-pill"
+                                        to="/"
+                                    >
+                                        Go Back to Homepage
+                                    </Link>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </Container>
             </section>

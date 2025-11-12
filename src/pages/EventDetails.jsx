@@ -91,7 +91,7 @@ const EventDetails = () => {
             />
             <section className="event-details-area pt-20">
                 <Container>
-                    <div className="event-details-inner shadow-lg border border-gray-600 p-10 rounded-2xl -mt-30 bg-white relative">
+                    <div className="event-details-inner shadow-lg border border-gray-600 dark:border-gray-800 p-10 rounded-2xl -mt-30 bg-white dark:bg-black relative">
                         <img
                             className="rounded-2xl max-h-[600px] w-full object-cover"
                             src={eventImageUrl}
@@ -100,37 +100,37 @@ const EventDetails = () => {
                         <div className="mx-[200px]">
                             <div className="flex items-center gap-8 justify-between mt-6">
                                 <div className="text-center">
-                                    <p className="opacity-70">Location</p>
-                                    <h4 className="text-3xl font-bebas-neue">
+                                    <p className="opacity-70 dark:text-gray-300">Location</p>
+                                    <h4 className="text-3xl font-bebas-neue dark:text-white">
                                         {eventLocation}
                                     </h4>
                                 </div>
                                 <div className="text-center">
-                                    <p className="opacity-70">Event Type</p>
-                                    <h4 className="text-3xl font-bebas-neue">
+                                    <p className="opacity-70 dark:text-gray-300">Event Type</p>
+                                    <h4 className="text-3xl font-bebas-neue dark:text-white">
                                         {eventType}
                                     </h4>
                                 </div>
                                 <div className="text-center">
-                                    <p className="opacity-70">Event Date</p>
-                                    <h4 className="text-3xl font-bebas-neue">
+                                    <p className="opacity-70 dark:text-gray-300">Event Date</p>
+                                    <h4 className="text-3xl font-bebas-neue dark:text-white">
                                         {formattedDate}
                                     </h4>
                                 </div>
                                 <div className="text-center">
-                                    <p className="opacity-70">Event Time</p>
-                                    <h4 className="text-3xl font-bebas-neue">
+                                    <p className="opacity-70 dark:text-gray-300">Event Time</p>
+                                    <h4 className="text-3xl font-bebas-neue dark:text-white">
                                         {EventTime(eventStartTime)} -{" "}
                                         {EventTime(eventEndTime)}
                                     </h4>
                                 </div>
                             </div>
-                            <p className="mt-8 text-center leading-6">
+                            <p className="mt-8 text-center leading-6 dark:text-white">
                                 {eventDescription}
                             </p>
                             {user?.email === email ? (
                                 <div className="flex items-center gap-1 bg-blue-700 rounded-2xl w-max py-3 px-5 absolute top-16 left-16">
-                                    <span className="inline-flex items-center justify-center w-6 h-6 me-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full dark:bg-gray-700 dark:text-blue-400">
+                                    <span className="inline-flex items-center justify-center w-6 h-6 me-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full">
                                         <svg
                                             className="w-3 h-3"
                                             aria-hidden="true"
