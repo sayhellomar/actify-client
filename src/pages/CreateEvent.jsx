@@ -5,12 +5,14 @@ import useAuth from "../hooks/useAuth";
 import Spinner from "../components/Spinner/Spinner";
 import useAxios from "../hooks/useAxios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const CreateEvent = () => {
     const [startTime, setStartTime] = useState("09:00");
     const [endTime, setEndTime] = useState("18:00");
     const { user, loading } = useAuth();
     const axios = useAxios();
+    const navigate = useNavigate();
 
     if (loading) {
         return (
@@ -51,7 +53,6 @@ const CreateEvent = () => {
             email,
         })
         .then(res => {
-            console.log(res.data);
             if(res.data.insertedId) {
                 form.reset();
                 Swal.fire({
@@ -61,24 +62,12 @@ const CreateEvent = () => {
                     showConfirmButton: false,
                     timer: 3500,
                 });
+                navigate('/upcoming-events');
             }
         })
         .catch(error => {
             console.log(error);
         })
-
-        // console.log({
-        //     eventTitle,
-        //     eventDescription,
-        //     eventType,
-        //     eventImageUrl,
-        //     eventLocation,
-        //     formatedDate,
-        //     eventStartTime,
-        //     eventEndTime,
-        //     email,
-        // });
-
     };
 
 

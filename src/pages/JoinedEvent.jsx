@@ -55,7 +55,7 @@ const JoinedEvent = () => {
                                 </EventCardLarge>
                             ))
                         ) : (
-                            <div className="text-center min-h-[calc(100vh-104px-332px-80px-353px)] grid items-center">
+                            <div className="text-center min-h-[calc(100vh-104px-332px-80px-353px)] pb-20 grid items-center">
                                 <div>
                                     <h3 className="text-5xl font-bold font-bebas-neue mb-8 dark:text-white">
                                         No Events Found!

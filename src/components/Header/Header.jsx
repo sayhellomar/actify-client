@@ -11,13 +11,7 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const Header = () => {
     const { user, loading, signOutUser, theme, setTheme } = useAuth();
-    const [showUserDropdown, setShowUserDropdown] = useState(false);
-    // const [theme, setTheme] = useState(localStorage.getItem('theme') || false);
     const navigate = useNavigate();
-
-    const handleShowUserDropdown = () => {
-        setShowUserDropdown(!showUserDropdown);
-    };
 
     const handleLogout = () => {
         signOutUser().then(() => {
@@ -28,7 +22,6 @@ const Header = () => {
     const handleThemeSwitch = (mode) => {
         setTheme(mode)
     };
-
 
     useEffect(() => {
         const html = document.querySelector('html');
@@ -102,18 +95,10 @@ const Header = () => {
                                                 <NavHref link="manage-events">
                                                     Manage Events
                                                 </NavHref>
-                                                <div className="relative mr-4 lg:mr-8">
-                                                    <button
-                                                        onClick={
-                                                            handleShowUserDropdown
-                                                        }
-                                                        type="button"
+                                                <div className="relative mr-4 lg:mr-8 user-profile-button">
+                                                    <div
                                                         className="flex text-sm rounded-full md:me-0 cursor-pointer"
-                                                        id="user-menu-button"
                                                     >
-                                                        <span className="sr-only">
-                                                            Open user menu
-                                                        </span>
                                                         <img
                                                             className="w-14 h-14 rounded-full object-cover"
                                                             src={user?.photoURL}
@@ -121,13 +106,10 @@ const Header = () => {
                                                                 user?.displayName
                                                             }
                                                         />
-                                                    </button>
+                                                    </div>
 
                                                     <div
-                                                        className={`${
-                                                            showUserDropdown &&
-                                                            `show-dropdown`
-                                                        } z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600`}
+                                                        className={`user-dropdown z-50 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600`}
                                                     >
                                                         <div className="px-4 py-3">
                                                             <span className="block text-sm text-gray-900 dark:text-white">

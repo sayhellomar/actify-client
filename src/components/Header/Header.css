@@ -1,5 +1,6 @@
-.show-dropdown {
+.user-profile-button:hover .user-dropdown {
     position: absolute;
     right: 0;
     display: block;
+    top: 56px;
 }

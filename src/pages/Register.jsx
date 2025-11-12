@@ -18,14 +18,15 @@ const Register = () => {
         googleSignIn,
     } = useAuth();
     const [passError, setPassError] = useState(null);
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const axios = useAxios();
 
     useEffect(() => {
         if (user) {
-            navigate(location.state || '/');
+            navigate(location.state || "/");
         }
-    }, [user])
+    }, [user]);
 
     if (loading || user) {
         return (
@@ -121,6 +122,10 @@ const Register = () => {
             });
     };
 
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword);
+    }
+
     return (
         <section className="register-area py-10 lg:py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-5 2xl:mx-10 rounded-2xl">
             <Container>
@@ -191,14 +196,19 @@ const Register = () => {
                                 >
                                     Your password
                                 </label>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    placeholder="Enter your password here"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    required
-                                />
+                                <div className="relative">
+                                    <input
+                                        type={showPassword ? 'text' : 'password'}
+                                        name="password"
+                                        id="password"
+                                        placeholder="Enter your password here"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        required
+                                    />
+                                    <span onClick={handleShowPassword} className="text-[10px] absolute right-4 top-3.5 cursor-pointer">
+                                        {showPassword ? 'Hide' : 'Show' }
+                                    </span>
+                                </div>
                             </div>
 
                             <button
