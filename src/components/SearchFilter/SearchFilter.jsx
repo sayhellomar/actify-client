@@ -8,11 +8,11 @@ const SearchFilter = ({handleSearch, eventType}) => {
     }, []);
 
     return (
-        <section className="search-filter-area pt-20">
+        <section className="search-filter-area pt-10 lg:pt-20">
             <Container>
-                <div className="search-filter flex items-center justify-between">
+                <div className="search-filter flex items-center justify-between flex-col md:flex-row">
                     <form
-                        className="flex items-center max-w-sm w-full"
+                        className="flex items-center max-w-sm w-full mb-2 md:mb-0"
                     >
                         <label htmlFor="simple-search" className="sr-only">
                             Search

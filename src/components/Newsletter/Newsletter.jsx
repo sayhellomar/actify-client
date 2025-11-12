@@ -4,7 +4,7 @@ const Newsletter = () => {
     return (
         <section className="newsletter-area">
             <Container>
-                <div className="newsletter-inner bg-actify-blue/30 dark:bg-actify-blue rounded-2xl p-20 flex gap-8 justify-between">
+                <div className="newsletter-inner bg-actify-blue/30 dark:bg-actify-blue rounded-2xl p-10 lg:p-20 flex flex-col lg:flex-row gap-8 justify-between">
                     <div className="flex-1">
                         <p className="opacity-70 mb-2">Newsletter</p>
                         <h4 className="text-5xl font-bebas-neue">

@@ -101,7 +101,7 @@ const EditEvent = () => {
     }
 
     return (
-        <section className="edit-event-area py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-10 rounded-2xl">
+        <section className="edit-event-area py-10 lg:py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-5 2xl:mx-10 rounded-2xl">
             <Container>
                 <div className="edit-event-inner grid place-items-center">
                     <div className="w-full max-w-[600px] p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-900">

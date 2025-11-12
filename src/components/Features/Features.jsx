@@ -6,9 +6,9 @@ import { TbListDetails } from "react-icons/tb";
 
 const Features = () => {
     return (
-        <section className="features-area py-20">
+        <section className="features-area py-10 lg:py-20">
             <Container>
-                <div className="features-inner grid grid-cols-2 lg:grid-cols-5 gap-8">
+                <div className="features-inner grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4 lg:gap-8">
                     <div className="p-8 bg-actify-red rounded-2xl min-h-[300px] flex flex-col justify-between">
                         <BsCalendar4Event color="#FFF" size="2.5em" />
                         <div>
@@ -22,7 +22,7 @@ const Features = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="p-8 bg-actify-blue rounded-2xl min-h-[300px] mt-8 flex flex-col justify-between">
+                    <div className="p-8 bg-actify-blue rounded-2xl min-h-[300px] mt-0 md:mt-8 flex flex-col justify-between">
                         <IoCreateOutline size="3em" />
                         <div>
                             <a href="#">
@@ -35,7 +35,7 @@ const Features = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="p-8 bg-actify-yellow rounded-2xl min-h-[300px] mt-8 flex flex-col justify-between">
+                    <div className="p-8 bg-actify-yellow rounded-2xl min-h-[300px] mt-0 xl:mt-8 flex flex-col justify-between">
                         <TbListDetails size="3em" />
                         <div>
                             <a href="#">
@@ -48,7 +48,7 @@ const Features = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="p-8 bg-actify-violet rounded-2xl min-h-[300px] mt-8 flex flex-col justify-between col-span-2">
+                    <div className="p-8 bg-actify-violet rounded-2xl min-h-[300px] mt-0 md:mt-8 flex flex-col justify-between col-auto xl:col-span-2">
                         <MdOutlineUpcoming size="3em" />
                         <div>
                             <a href="#">

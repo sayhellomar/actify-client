@@ -16,19 +16,19 @@ const EventCardLarge = ({event, children}) => {
 
 
     return (
-        <div className="flex items-center border border-gray-200 dark:border-gray-800 justify-between gap-5 rounded-2xl p-8">
-            <div className="date text-center flex-1">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center border border-gray-200 dark:border-gray-800 justify-between gap-3 lg:gap-5 rounded-2xl p-6 lg:p-8">
+            <div className="date text-left lg:text-center flex-auto lg:flex-1">
                 <p className="uppercase text-sm dark:text-gray-300">{month}</p>
                 <h3 className="text-5xl font-bold dark:text-white">{date}</h3>
             </div>
-            <div className="flex-2">
+            <div className="flex-auto lg:flex-2">
                 <img
-                    className="w-[180px] h-[180px] rounded-full object-cover"
+                    className="w-[120px] h-[120px] xl:w-[180px] xl:h-[180px] rounded-full object-cover"
                     src={eventImageUrl}
                     alt={eventTitle}
                 />
             </div>
-            <div className="flex-6">
+            <div className="flex-auto lg:flex-6">
                 <div className="flex items-center gap-2 border border-blue-700 text-blue-700 dark:text-blue-400 dark:border-blue-500 uppercase text-sm font-semibold py-2 px-5 rounded-full w-max">
                     <FaMapLocationDot />
                     {eventLocation}
@@ -38,7 +38,7 @@ const EventCardLarge = ({event, children}) => {
                 </h4>
                 <p className="opacity-80 dark:text-gray-300">{eventDescription}</p>
             </div>
-            <div className="flex-2 text-center">
+            <div className="flex-auto lg:flex-2 text-center block mt-4 lg:mt-0 mb-2 lg:mb-0">
                 {children}
             </div>
         </div>

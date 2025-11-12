@@ -21,9 +21,11 @@ const Register = () => {
     const navigate = useNavigate();
     const axios = useAxios();
 
-    if (user) {
-        navigate("/");
-    }
+    useEffect(() => {
+        if (user) {
+            navigate(location.state || '/');
+        }
+    }, [user])
 
     if (loading || user) {
         return (
@@ -120,10 +122,10 @@ const Register = () => {
     };
 
     return (
-        <section className="register-area py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-10 rounded-2xl">
+        <section className="register-area py-10 lg:py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-5 2xl:mx-10 rounded-2xl">
             <Container>
                 <div className="register-inner grid place-items-center">
-                    <div className="w-full max-w-[500px] relative p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-900">
+                    <div className="w-full max-w-[500px] relative p-8 bg-white rounded-2xl md:p-12 dark:bg-gray-900">
                         <h5 className="text-3xl font-medium text-center font-bebas-neue text-gray-900 dark:text-white">
                             Sign up to our platform
                         </h5>

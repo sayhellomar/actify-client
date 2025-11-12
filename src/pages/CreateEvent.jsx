@@ -84,10 +84,10 @@ const CreateEvent = () => {
 
 
     return (
-        <section className="create-event-area py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-10 rounded-2xl">
+        <section className="create-event-area py-10 lg:py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-5 2xl:mx-10 rounded-2xl">
             <Container>
                 <div className="create-event-inner grid place-items-center">
-                    <div className="w-full max-w-[600px] p-4 bg-white rounded-2xl sm:p-6 md:p-12 dark:bg-gray-900">
+                    <div className="w-full max-w-[600px] p-8 bg-white rounded-2xl md:p-12 dark:bg-gray-900">
                         <h5 className="text-3xl font-medium text-center font-bebas-neue text-gray-900 dark:text-white">
                             Create Event
                         </h5>

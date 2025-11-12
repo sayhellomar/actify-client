@@ -1,10 +1,10 @@
 const Jumbortron = ({subtitle = "", title = "", description = ""}) => {
     return (
-        <section className="jumbortron-area py-20 bg-actify-blue/30 dark:bg-actify-blue mx-10 rounded-2xl">
+        <section className="jumbortron-area py-20 bg-actify-blue/30 dark:bg-actify-blue mx-5 2xl:mx-10 rounded-2xl">
             <div className="max-w-[800px] px-5 mx-auto">
                 <div className="jumbortron-inner text-center">
                     <p className="opacity-70">{subtitle}</p>
-                    <h2 className="font-bebas-neue text-8xl mt-2 mb-5">{title}</h2>
+                    <h2 className="font-bebas-neue text-6xl lg:text-8xl mt-2 mb-5">{title}</h2>
                     <p className="opacity-90">{description}</p>
                 </div>
             </div>

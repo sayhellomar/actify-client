@@ -25,15 +25,16 @@ const Header = () => {
         });
     };
 
-    const handleThemeSwitch = () => {
-        setTheme(!theme);
+    const handleThemeSwitch = (mode) => {
+        setTheme(mode)
     };
+
 
     useEffect(() => {
         const html = document.querySelector('html');
         html.classList.remove('light', 'dark');
-        html.classList.add(theme ? 'dark' : 'light');
-        localStorage.setItem('theme', theme ? 'dark' : 'light');
+        html.classList.add(theme === 'dark' ? 'dark' : 'light');
+        localStorage.setItem('theme', theme === 'dark' ? 'dark' : 'light');
     }, [theme])
 
     return (
@@ -48,8 +49,8 @@ const Header = () => {
                                     className="flex items-center space-x-3 rtl:space-x-reverse"
                                 >
                                     <img
-                                        src={theme ? logoWhite : logo}
-                                        className="h-11"
+                                        src={theme === 'dark' ? logoWhite : logo}
+                                        className="h-8 lg:h-11"
                                         alt="Actify Logo"
                                     />
                                 </Link>
@@ -101,7 +102,7 @@ const Header = () => {
                                                 <NavHref link="manage-events">
                                                     Manage Events
                                                 </NavHref>
-                                                <div className="relative">
+                                                <div className="relative mr-4 lg:mr-8">
                                                     <button
                                                         onClick={
                                                             handleShowUserDropdown
@@ -191,12 +192,11 @@ const Header = () => {
                                         <li className="leading-none">
                                             <button
                                                 className="cursor-pointer dark:text-white"
-                                                onClick={handleThemeSwitch}
                                             >
-                                                {theme ? (
-                                                    <MdLightMode size="1.3em" />
+                                                {theme === 'dark' ? (
+                                                    <MdLightMode onClick={() => handleThemeSwitch('light')} size="1.3em" />
                                                 ) : (
-                                                    <MdDarkMode size="1.3em" />
+                                                    <MdDarkMode onClick={() => handleThemeSwitch('dark')} size="1.3em" />
                                                 )}
                                             </button>
                                         </li>

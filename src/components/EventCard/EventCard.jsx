@@ -17,7 +17,7 @@ const EventCard = ({ event }) => {
     
     return (
         <div
-            className="event-card min-h-[600px] rounded-2xl p-8 flex flex-col justify-between"
+            className="event-card min-h-[400px] xl:min-h-[600px] rounded-2xl p-8 flex flex-col justify-between"
             style={{ backgroundImage: `url(${eventImageUrl})` }}
         >
             <div className="flex items-center gap-2 bg-blue-700 text-white uppercase text-sm font-semibold py-2 px-5 rounded-full w-max">

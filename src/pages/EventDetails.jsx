@@ -89,16 +89,16 @@ const EventDetails = () => {
                 subtitle="Know more about the event"
                 title={eventTitle}
             />
-            <section className="event-details-area pt-20">
+            <section className="event-details-area pt-10 lg:pt-20">
                 <Container>
-                    <div className="event-details-inner shadow-lg border border-gray-600 dark:border-gray-800 p-10 rounded-2xl -mt-30 bg-white dark:bg-black relative">
+                    <div className="event-details-inner shadow-lg border border-gray-600 dark:border-gray-800 p-5 lg:p-10 rounded-2xl mt-0 2xl:-mt-30 bg-white dark:bg-black relative">
                         <img
                             className="rounded-2xl max-h-[600px] w-full object-cover"
                             src={eventImageUrl}
                             alt=""
                         />
-                        <div className="mx-[200px]">
-                            <div className="flex items-center gap-8 justify-between mt-6">
+                        <div className="mx-0 xl:mx-[200px]">
+                            <div className="flex items-center flex-col md:flex-row gap-4 lg:gap-8 justify-between mt-6">
                                 <div className="text-center">
                                     <p className="opacity-70 dark:text-gray-300">Location</p>
                                     <h4 className="text-3xl font-bebas-neue dark:text-white">

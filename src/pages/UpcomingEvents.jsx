@@ -53,9 +53,9 @@ const UpcomingEvents = () => {
                 description="Explore upcoming events that bring people together for a cleaner, greener, and better society."
             />
             <SearchFilter handleSearch={handleSearch} eventType={eventType} />
-            <section className="upcoming-events-area pt-20">
+            <section className="upcoming-events-area pt-10 lg:pt-20">
                 <Container>
-                    <div className="upcoming-events grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="upcoming-events grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
                         {upcomingEvents.length !== 0 ? (
                             upcomingEvents.map((upcomingEvent) => (
                                 <EventCard
