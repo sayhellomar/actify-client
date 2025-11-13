@@ -5,4 +5,19 @@ The platform emphasizes user engagement, providing an interactive interface to e
 
 **Actify** aims to foster collaboration and community involvement, transforming everyday social initiatives into impactful experiences that connect people for a cause.
 
-<!-- If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project. -->
+🌟 Top 5 Features of Actify
+
+## 1. User Authentication (Login & Register)
+`Secure Firebase-based authentication that allows users to easily register, log in, or Google sign-in options.`
+
+## 2. Create and Manage Events
+`Registered users can create social development events, set event details (title, location, date, type, and description), and manage their posted events effortlessly.`
+
+## 3. Join and Participate in Events
+`Users can browse upcoming community events and join the ones that match their interests — such as tree plantation, cleanliness drives, or donation campaigns.`
+
+## 4. Smart Search and Filtering
+`Quickly find events by title or category (e.g., Cleanup, Plantation, Health) using a dynamic search and filter system powered by MongoDB queries.`
+
+## 5. Upcoming & Joined Events Tracking
+`View upcoming events and track all joined events — with real-time updates, so users never miss out on important social activities.`
