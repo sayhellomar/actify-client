@@ -21,3 +21,5 @@ The platform emphasizes user engagement, providing an interactive interface to e
 
 ## 5. Upcoming & Joined Events Tracking
 `View upcoming events and track all joined events — with real-time updates, so users never miss out on important social activities.`
+
+[View Website](https://acttify.netlify.app/)
