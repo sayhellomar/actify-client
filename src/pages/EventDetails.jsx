@@ -83,6 +83,7 @@ const EventDetails = () => {
                 });
         }
     };
+
     return (
         <>
             <Jumbortron
@@ -101,25 +102,25 @@ const EventDetails = () => {
                             <div className="flex items-center flex-col md:flex-row gap-4 lg:gap-8 justify-between mt-6">
                                 <div className="text-center">
                                     <p className="opacity-70 dark:text-gray-300">Location</p>
-                                    <h4 className="text-3xl font-bebas-neue dark:text-white">
+                                    <h4 className="text-2xl lg:text-3xl font-bebas-neue dark:text-white">
                                         {eventLocation}
                                     </h4>
                                 </div>
                                 <div className="text-center">
                                     <p className="opacity-70 dark:text-gray-300">Event Type</p>
-                                    <h4 className="text-3xl font-bebas-neue dark:text-white">
+                                    <h4 className="text-2xl lg:text-3xl font-bebas-neue dark:text-white">
                                         {eventType}
                                     </h4>
                                 </div>
                                 <div className="text-center">
                                     <p className="opacity-70 dark:text-gray-300">Event Date</p>
-                                    <h4 className="text-3xl font-bebas-neue dark:text-white">
+                                    <h4 className="text-2xl lg:text-3xl font-bebas-neue dark:text-white">
                                         {formattedDate}
                                     </h4>
                                 </div>
                                 <div className="text-center">
                                     <p className="opacity-70 dark:text-gray-300">Event Time</p>
-                                    <h4 className="text-3xl font-bebas-neue dark:text-white">
+                                    <h4 className="text-2xl lg:text-3xl font-bebas-neue dark:text-white">
                                         {EventTime(eventStartTime)} -{" "}
                                         {EventTime(eventEndTime)}
                                     </h4>

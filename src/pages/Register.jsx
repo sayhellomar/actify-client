@@ -1,12 +1,12 @@
 import Container from "../components/Container/Container";
 import { Link, useNavigate } from "react-router";
-import { FaGithub, FaGoogle } from "react-icons/fa6";
+import { FaGoogle } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner/Spinner";
-import useAxios from "../hooks/useAxios";
 import Swal from "sweetalert2";
 import showError from "../utilities/showError";
+import useAxios from "../hooks/useAxios";
 
 const Register = () => {
     const {
@@ -36,7 +36,6 @@ const Register = () => {
         );
     }
 
-    // console.log(user);
     const handleRegister = (e) => {
         setPassError(null);
         e.preventDefault();
@@ -53,6 +52,7 @@ const Register = () => {
             );
             return;
         }
+
         createUser(email, password)
             .then((userCredential) => {
                 axios
@@ -62,6 +62,7 @@ const Register = () => {
                         photo,
                     })
                     .then((res) => {
+                        console.log(res);
                         if (res.data.insertedId) {
                             udpateUserProfile({
                                 displayName: name,
@@ -82,7 +83,6 @@ const Register = () => {
                     .catch((error) => {
                         showError(error.code);
                     });
-                const user = userCredential.user;
             })
             .catch((error) => {
                 setLoading(false);
@@ -91,6 +91,7 @@ const Register = () => {
     };
 
     const handleGoogleSignIn = () => {
+
         googleSignIn()
             .then((result) => {
                 const user = result.user;
@@ -101,6 +102,15 @@ const Register = () => {
                         photo: user.photoURL,
                     })
                     .then((res) => {
+                        if(res.status === 200) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "You successfully logged in!",
+                                showConfirmButton: false,
+                                timer: 3500,
+                            });
+                        }
                         if (res.data.insertedId) {
                             navigate("/");
                             Swal.fire({
@@ -124,7 +134,7 @@ const Register = () => {
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
-    }
+    };
 
     return (
         <section className="register-area py-10 lg:py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-5 2xl:mx-10 rounded-2xl">
@@ -198,15 +208,20 @@ const Register = () => {
                                 </label>
                                 <div className="relative">
                                     <input
-                                        type={showPassword ? 'text' : 'password'}
+                                        type={
+                                            showPassword ? "text" : "password"
+                                        }
                                         name="password"
                                         id="password"
                                         placeholder="Enter your password here"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         required
                                     />
-                                    <span onClick={handleShowPassword} className="text-[10px] absolute right-4 top-3.5 cursor-pointer">
-                                        {showPassword ? 'Hide' : 'Show' }
+                                    <span
+                                        onClick={handleShowPassword}
+                                        className="text-[10px] absolute right-4 top-3.5 cursor-pointer dark:text-white"
+                                    >
+                                        {showPassword ? "Hide" : "Show"}
                                     </span>
                                 </div>
                             </div>

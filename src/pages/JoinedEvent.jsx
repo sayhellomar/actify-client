@@ -4,16 +4,16 @@ import EventCardLarge from "../components/EventCardLarge/EventCardLarge";
 import { Link } from "react-router";
 import useAuth from "../hooks/useAuth";
 import Spinner from "../components/Spinner/Spinner";
-import useAxios from "../hooks/useAxios";
 import { useEffect, useState } from "react";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const JoinedEvent = () => {
     const [joinedEvent, setJoinedEvent] = useState([]);
     const { user, loading } = useAuth();
-    const axios = useAxios();
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        axios
+        axiosSecure
             .get(`/joined-event?email=${user?.email}`)
             .then((res) => {
                 setJoinedEvent(res.data);
@@ -21,7 +21,7 @@ const JoinedEvent = () => {
             .catch((error) => {
                 console.log(error);
             });
-    }, [axios, user]);
+    }, [axiosSecure, user]);
 
     if (loading) {
         return (

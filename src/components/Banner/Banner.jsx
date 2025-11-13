@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const Banner = () => {
     return (
-        <section className="banner-area py-10 lg:py-20 bg-actify-blue/30 dark:bg-actify-blue mx-5 lg:mx-10 rounded-2xl">
+        <section className="banner-area py-10 lg:py-20 bg-actify-blue/30 dark:bg-actify-blue mx-5 2xl:mx-10 rounded-2xl">
             <Container>
                 <div className="banner-inner grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
                     <motion.div className="banner-left" initial={{opacity: 0, x: -100}} animate={{opacity: 1, x: 0}} transition={{duration: 1, ease: 'easeOut', delay: .1}}>

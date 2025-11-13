@@ -1,5 +1,5 @@
 import Container from "../components/Container/Container";
-import { FaGithub, FaGoogle } from "react-icons/fa6";
+import { FaGoogle } from "react-icons/fa6";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import Spinner from "../components/Spinner/Spinner";
@@ -43,7 +43,6 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 3500,
                 });
-                const user = userCredential.user;
             })
             .catch((error) => {
                 setLoading(false);
@@ -54,8 +53,14 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then((result) => {
-                const user = result.user;
                 navigate(location.state || '/');
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "You successfully logged in!",
+                    showConfirmButton: false,
+                    timer: 3500,
+                });
             })
             .catch((error) => {
                 setLoading(false);
@@ -70,7 +75,7 @@ const Login = () => {
     return (
         <section className="login-area py-10 lg:py-20 bg-actify-blue/30 dark:bg-actify-blue/10 mx-5 2xl:mx-10 rounded-2xl">
             <Container>
-                <div className="login-inner min-h-[calc(100vh-92px-160px-353px)] grid place-items-center">
+                <div className="login-inner min-h-[calc(100vh-92px-160px-449px)] grid place-items-center">
                     <div className="w-full max-w-[450px] p-8 bg-white rounded-2xl md:p-12 dark:bg-gray-900">
                         <h5 className="text-3xl font-medium text-center font-bebas-neue text-gray-900 dark:text-white">
                             Sign in to our platform
@@ -112,7 +117,7 @@ const Login = () => {
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         required
                                     />
-                                    <span onClick={handleShowPassword} className="text-[10px] absolute right-4 top-3.5 cursor-pointer">
+                                    <span onClick={handleShowPassword} className="text-[10px] absolute right-4 top-3.5 cursor-pointer dark:text-white">
                                         {showPassword ? 'Hide' : 'Show' }
                                     </span>
                                 </div>

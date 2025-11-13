@@ -10,6 +10,8 @@ import Register from "../pages/Register";
 import EventDetails from "../pages/EventDetails";
 import EditEvent from "../pages/EditEvent";
 import PrivateRoute from "./PrivateRoute";
+import ViewHeightSpinner from "../components/ViewHeightSpinner/ViewHeightSpinner";
+import Error from "../pages/error";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +29,8 @@ const router = createBrowserRouter([
             },
             {
                 path: 'event-detail/:id',
-                loader: ({params}) => fetch(`http://localhost:3000/event/${params.id}`),
+                loader: ({params}) => fetch(`https://actify-server-opal.vercel.app/event/${params.id}`),
+                hydrateFallbackElement: <ViewHeightSpinner />,
                 element: <EventDetails />
             },
             {
@@ -40,8 +43,9 @@ const router = createBrowserRouter([
             },
             {
                 path: 'edit-event/:id',
-                loader: ({params}) => fetch(`http://localhost:3000/event/${params.id}`),
-                element: <PrivateRoute><EditEvent /></PrivateRoute>
+                loader: ({params}) => fetch(`https://actify-server-opal.vercel.app/event/${params.id}`),
+                element: <PrivateRoute><EditEvent /></PrivateRoute>,
+                hydrateFallbackElement: <ViewHeightSpinner />
             },
             {
                 path: 'login',
@@ -51,7 +55,8 @@ const router = createBrowserRouter([
                 path: 'register',
                 element: <Register />
             },
-        ]
+        ],
+        errorElement: <Error />
     }
 ]);
 

@@ -44,7 +44,6 @@ const UpcomingEvents = () => {
         );
     }
 
-    console.log(upcomingEvents.length);
     return (
         <>
             <Jumbortron

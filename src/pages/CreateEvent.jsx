@@ -6,6 +6,7 @@ import Spinner from "../components/Spinner/Spinner";
 import useAxios from "../hooks/useAxios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const CreateEvent = () => {
     const [startTime, setStartTime] = useState("09:00");
@@ -13,6 +14,7 @@ const CreateEvent = () => {
     const { user, loading } = useAuth();
     const axios = useAxios();
     const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
 
     if (loading) {
         return (
@@ -41,7 +43,7 @@ const CreateEvent = () => {
         const [month, day, year] = eventDate.split('/');
         const formatedDate = `${year}-${month}-${day}T00:00:00Z`;
 
-        axios.post('/events', {
+        axiosSecure.post('/events', {
             eventTitle,
             eventDescription,
             eventType,
@@ -180,7 +182,7 @@ const CreateEvent = () => {
                                     name="event_location"
                                     id="event_location"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="Enter your photo URL here"
+                                    placeholder="Enter your event location here"
                                     required
                                 />
                             </div>

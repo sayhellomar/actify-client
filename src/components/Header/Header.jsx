@@ -28,7 +28,7 @@ const Header = () => {
         html.classList.remove('light', 'dark');
         html.classList.add(theme === 'dark' ? 'dark' : 'light');
         localStorage.setItem('theme', theme === 'dark' ? 'dark' : 'light');
-    }, [theme])
+    }, [theme]);
 
     return (
         <>

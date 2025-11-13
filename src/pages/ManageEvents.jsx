@@ -5,12 +5,12 @@ import { Link } from "react-router";
 import useAuth from "../hooks/useAuth";
 import Spinner from "../components/Spinner/Spinner";
 import { useEffect, useState } from "react";
-import useAxios from "../hooks/useAxios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ManageEvents = () => {
     const [events, setEvents] = useState([]);
     const { user, loading } = useAuth();
-    const axios = useAxios();
+    const axiosSecure = useAxiosSecure();
 
     if (loading) {
         return (
@@ -21,7 +21,7 @@ const ManageEvents = () => {
     }
 
     useEffect(() => {
-        axios
+        axiosSecure
             .get(`/events?email=${user.email}`)
             .then((res) => {
                 setEvents(res.data);
@@ -29,7 +29,7 @@ const ManageEvents = () => {
             .catch((error) => {
                 console.log(error);
             });
-    }, [axios, user]);
+    }, [axiosSecure, user]);
 
     return (
         <>
